@@ -1,0 +1,47 @@
+create database medwatch;
+use medwatch;
+
+CREATE TABLE doctors (
+id INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(100),
+email VARCHAR(100) UNIQUE,
+password VARCHAR(255),
+role VARCHAR(20) DEFAULT 'doctor'
+);
+
+
+CREATE TABLE people (
+id INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(100),
+rfid VARCHAR(100) UNIQUE,
+disease_status ENUM('healthy','suspected','positive') DEFAULT 'healthy'
+);
+
+
+CREATE TABLE rfid_logs (
+id INT AUTO_INCREMENT PRIMARY KEY,
+rfid VARCHAR(100),
+location VARCHAR(100),
+timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+
+CREATE TABLE alerts (
+id INT AUTO_INCREMENT PRIMARY KEY,
+rfid VARCHAR(100),
+message TEXT,
+timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE medications (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  disease varchar(200),
+  dosage VARCHAR(255) NOT NULL,
+  frequency VARCHAR(255) NOT NULL,
+  start_date DATE NOT NULL,
+  end_date DATE NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
